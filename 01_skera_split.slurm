@@ -9,7 +9,7 @@
 # (so the array size can match your actual sample count automatically)
 
 set -euo pipefail
-source "$(dirname "$0")/pipeline_config.sh"
+source "${SLURM_SUBMIT_DIR}/pipeline_config.sh"
 source "${CONDA_BASE}/etc/profile.d/conda.sh"
 conda activate "${ISOSEQ_ENV}"
 
@@ -22,3 +22,4 @@ OUT_BAM="${SKERADIR}/${SAMPLE}.segmented.bam"
 
 echo "[skera] sample=${SAMPLE}"
 skera split -j "${SLURM_CPUS_PER_TASK}" "${IN_BAM}" "${MAS_PRIMERS}" "${OUT_BAM}"
+

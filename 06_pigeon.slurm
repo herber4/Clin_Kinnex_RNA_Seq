@@ -7,7 +7,7 @@
 #SBATCH --time=8:00:00
 
 set -euo pipefail
-source "$(dirname "$0")/pipeline_config.sh"
+source "${SLURM_SUBMIT_DIR}/pipeline_config.sh"
 source "${CONDA_BASE}/etc/profile.d/conda.sh"
 conda activate "${ISOSEQ_ENV}"
 

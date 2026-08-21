@@ -7,7 +7,7 @@
 #SBATCH --time=12:00:00
 
 set -euo pipefail
-source "$(dirname "$0")/pipeline_config.sh"
+source "${SLURM_SUBMIT_DIR}/pipeline_config.sh"
 source "${CONDA_BASE}/etc/profile.d/conda.sh"
 conda activate "${ISOSEQ_ENV}"
 
@@ -16,4 +16,5 @@ conda activate "${ISOSEQ_ENV}"
 pbmm2 align -j "${SLURM_CPUS_PER_TASK}" --preset ISOSEQ --sort \
     "${REF_FASTA}" "${CLUSTERDIR}/clustered.bam" \
     "${MAPDIR}/mapped_reads_all_samples.bam"
+
 
